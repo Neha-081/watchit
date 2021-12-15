@@ -7,17 +7,19 @@ const debounce = require('lodash.debounce')  // to stop add function for calling
 
 program
 .version('0.0.1')
-.argument('[filename','Name of a file to exceute')
+.argument('[filename]','Name of a file to exceute')
 .action((args)=>{   //args is object of  arguements
  console.log(args);
-})
+});
 
-const start=debounce(()=>{
-    console.log('starting user program');
-},100)
+program.parse(process.argv)
 
-chokidar.watch('.')
-    // .on('add',()=>console.log('STARTED USER PROGRAM'))  //create a new file or sees files for first time, chokidar sees all new file in project directory 
-    .on('add',start)
-    .on('change',()=>console.log('CHANGE'))   //change a file and change when file code changes 
-    .on('unlink',()=>console.log('UNLINKED'))  //deleting a file
+// const start=debounce(()=>{
+//     console.log('starting user program');
+// },100)
+
+// chokidar.watch('.')
+//     // .on('add',()=>console.log('STARTED USER PROGRAM'))  //create a new file or sees files for first time, chokidar sees all new file in project directory 
+//     .on('add',start)
+//     .on('change',()=>console.log('CHANGE'))   //change a file and change when file code changes 
+//     .on('unlink',()=>console.log('UNLINKED'))  //deleting a file
